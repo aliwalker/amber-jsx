@@ -1,0 +1,19 @@
+{
+  "name": "amberjsx",
+  "version": "0.0.1",
+  "description": "A transpiler of jsx to js",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "mocha": "^5.0.5"
+  },
+  "scripts": {
+    "build": "babel --watch src --out-dir build -s",
+    "test": "mocha build/test/*.js",
+    "clean": "rm -rf build/"
+  },
+  "author": "",
+  "license": "ISC"
+}

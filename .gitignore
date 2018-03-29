@@ -1,0 +1,7 @@
+src/selftesting/
+
+build/selftesting/
+
+node_modules/
+
+.vscode/
