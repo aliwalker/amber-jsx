@@ -2,7 +2,7 @@
   "name": "amberjsx",
   "version": "0.0.1",
   "description": "A transpiler of jsx to js",
-  "main": "index.js",
+  "main": "build/index.js",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
