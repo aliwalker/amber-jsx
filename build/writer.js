@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Writer = undefined;
+exports.Writer = exports.XML = exports.JS = undefined;
 
 var _parser = require('./parser');
 
@@ -14,13 +14,13 @@ const XMLStart = /\(\s*</,
 const tailingComma = /,\s*$/;
 const customTag = /^[A-Z]/;
 
-const JS = 0,
-      XML = 1;
+const JS = exports.JS = 0,
+      XML = exports.XML = 1;
 const { TEXT } = _lexer.type;
 
 class Writer {
   constructor(code) {
-    this.code = code;
+    this.code = code || '';
     this.parts = [];
     this.parser = new _parser.Parser();
   }
@@ -106,14 +106,17 @@ class Writer {
   /** 
    * Split code into different parts. 
   */
-  _splitXML() {
+  _splitXML(src) {
     let startIndex = 0,
         endIndex = 0,
         vTree = void 0,
         parser = this.parser,
-        code = this.code,
+        code = src || this.code,
         parts = this.parts,
-        match = code.match(XMLStart);
+        match = (code || '').match(XMLStart);
+
+    if (code.length === 0) return false;
+    this.code = code;
 
     // No XML is found.
     if (!match) {
@@ -153,6 +156,7 @@ class Writer {
         value: code
       });
     }
+    return parts;
   }
 }
 exports.Writer = Writer;

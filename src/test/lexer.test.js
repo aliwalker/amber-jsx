@@ -51,6 +51,8 @@ describe('Lexer', () => {
 
         if (token.dText)
           token.dText === 'message';
+
+        token = scanner.getToken();
       }
     })
   });

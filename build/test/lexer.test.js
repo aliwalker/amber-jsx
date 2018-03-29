@@ -56,6 +56,8 @@ describe('Lexer', () => {
         if (token.text) token.text === 'Hello';
 
         if (token.dText) token.dText === 'message';
+
+        token = scanner.getToken();
       }
     });
   });

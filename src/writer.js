@@ -5,13 +5,13 @@ const XMLStart = /\(\s*</, XMLEnd = />\s*\)/;
 const tailingComma = /,\s*$/;
 const customTag = /^[A-Z]/;
 
-const JS = 0, XML = 1;
+export const JS = 0, XML = 1;
 const { TEXT } = type;
 
 
 export class Writer {
   constructor(code) {
-    this.code = code;
+    this.code = code || '';
     this.parts = [];
     this.parser = new Parser();
   }
@@ -101,15 +101,18 @@ export class Writer {
   /** 
    * Split code into different parts. 
   */
-  _splitXML() {
+  _splitXML(src) {
     let 
       startIndex = 0,
       endIndex   = 0,
       vTree      = void 0,
       parser     = this.parser,
-      code       = this.code,
+      code       = src || this.code,
       parts      = this.parts,
-      match      = code.match(XMLStart);
+      match      = (code || '').match(XMLStart);
+
+    if (code.length === 0)  return false;
+    this.code = code;
 
     // No XML is found.
     if (!match) {
@@ -150,5 +153,6 @@ export class Writer {
         value: code
       });
     }
+    return parts;
   }
 }
