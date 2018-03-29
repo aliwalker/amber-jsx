@@ -2,8 +2,8 @@ import { Writer } from './writer';
 import { Parser } from './parser';
 import fs from 'fs';
 
-const relativeStriper = /^(\.\/)|(\/)*$/;
-const nameStriper = /([^\/\s*]*)\.(jsx|js)\s*$/;
+const relativePathRe = /^(\.)\//;
+const jsFile = /([^\/\s*]*)\.(jsx|js)\s*$/;
 
 export const AmberJSX = {
   /**
@@ -12,17 +12,20 @@ export const AmberJSX = {
    * @param {String} destPath optional destination path.
    */
   transpile(sourcePath, destPath) {
+    // Save original value.
     var originalSourcePath = sourcePath;
-    // relative path.
-    if (sourcePath.startsWith('./')) {
-      sourcePath = __dirname + sourcePath.replace(relativeStriper, '');
+    // convert relative path to absolute path.
+    if (relativePathRe.test(sourcePath)) {
+      sourcePath = __dirname + '/../' + sourcePath.replace(relativePathRe, '');
+    } else if (!sourcePath.startsWith('/')) {
+      sourcePath = __dirname + '/../' + sourcePath;
     }
 
-    if (!nameStriper.test(sourcePath)) {
+    if (!jsFile.test(sourcePath)) {
       throw new Error(`Unrecognizable file: ${sourcePath}. `);
     }
 
-    destPath = destPath || (sourcePath.match(sourcePath)[1] + '.compiled.js');
+    destPath = destPath || (sourcePath.split(/\.(jsx|js)$/)[0] + '.compiled.js');
 
     fs.readFile(sourcePath, 'utf-8', (err, code) => {
       if (err) {
