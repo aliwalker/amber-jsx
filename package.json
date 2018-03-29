@@ -17,6 +17,6 @@
     "test": "mocha build/test/*.js",
     "clean": "rm -rf build/"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "alien",
+  "license": "MIT"
 }

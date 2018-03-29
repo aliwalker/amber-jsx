@@ -10,4 +10,5 @@ if (!process.argv[2]) {
   return;
 }
 
+
 amberJSX(process.argv[2], process.argv[3]);

@@ -16,9 +16,9 @@ export const AmberJSX = {
     var originalSourcePath = sourcePath;
     // convert relative path to absolute path.
     if (relativePathRe.test(sourcePath)) {
-      sourcePath = __dirname + '/../' + sourcePath.replace(relativePathRe, '');
+      sourcePath = process.cwd() + '/' + sourcePath.replace(relativePathRe, '');
     } else if (!sourcePath.startsWith('/')) {
-      sourcePath = __dirname + '/../' + sourcePath;
+      sourcePath = process.cwd() + '/' + sourcePath;
     }
 
     if (!jsFile.test(sourcePath)) {
@@ -26,6 +26,12 @@ export const AmberJSX = {
     }
 
     destPath = destPath || (sourcePath.split(/\.(jsx|js)$/)[0] + '.compiled.js');
+
+    if (relativePathRe.test(destPath)) {
+      destPath = __dirname + '/../' + destPath.replace(relativePathRe, '');
+    } else if (!destPath.startsWith('/')) {
+      destPath = __dirname + '/../' + destPath;
+    }
 
     fs.readFile(sourcePath, 'utf-8', (err, code) => {
       if (err) {
