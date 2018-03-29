@@ -16,7 +16,7 @@ export class Parser {
     // If a new source is given, make a new scanner instance.
     } else if (src) {
       this.src = src;
-      this.scanner.resetSource(src);
+      this.scanner = new Scanner(src);
     }
 
     return this._parse();

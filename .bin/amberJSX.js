@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-console.log("Hello, command line!");
+function amberJSX(argvs) {
+  
+}

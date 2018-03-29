@@ -26,9 +26,9 @@ class Writer {
   }
 
   write() {
-    this._splitXML();
     const self = this;
-    const parts = this.parts;
+    const parts = this._splitXML();
+
     let res = '';
     parts.forEach(part => {
       res += part.value;
