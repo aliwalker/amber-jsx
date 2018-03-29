@@ -23,7 +23,7 @@ class Parser {
       // If a new source is given, make a new scanner instance.
     } else if (src) {
       this.src = src;
-      this.scanner = new _lexer.Scanner(src);
+      this.scanner.resetSource(src);
     }
 
     return this._parse();

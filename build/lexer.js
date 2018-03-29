@@ -30,6 +30,11 @@ class Scanner {
     if (this.src !== '' && this.src[0] !== '<') throw new Error(`Unexpected token: ${this.src[0]}`);
   }
 
+  resetSource(src) {
+    if (!src) return;
+    this.src = src;
+  }
+
   getToken() {
     let lookahead = 0,
         length = this.src.length,

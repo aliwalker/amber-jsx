@@ -34,7 +34,6 @@ class Writer {
       res += part.value;
     });
 
-    //console.log(res);
     return res;
   }
 
