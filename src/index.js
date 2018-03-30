@@ -28,9 +28,9 @@ export const AmberJSX = {
     destPath = destPath || (sourcePath.split(/\.(jsx|js)$/)[0] + '.compiled.js');
 
     if (relativePathRe.test(destPath)) {
-      destPath = __dirname + '/../' + destPath.replace(relativePathRe, '');
+      destPath = process.cwd() + '/' + destPath.replace(relativePathRe, '');
     } else if (!destPath.startsWith('/')) {
-      destPath = __dirname + '/../' + destPath;
+      destPath = process.cwd() + '/' + destPath;
     }
 
     fs.readFile(sourcePath, 'utf-8', (err, code) => {
