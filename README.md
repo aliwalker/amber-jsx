@@ -50,7 +50,7 @@ const element = h(
 
 ## Installation
 ```bash
-git clone git@github.com:Alieeeeen/amberJSX.git
+git clone https://github.com/aliwalker/amber-jsx.git
 cd amberJSX
 npm install . -g
 ```
